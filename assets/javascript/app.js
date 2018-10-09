@@ -50,7 +50,9 @@ $(document).ready(function(){
 
     // Generating Data From Firebase to HTML
     db.ref().on('child_added', function(childSnapshot){
-        console.log(childSnapshot.val());
+
+        //Test
+        // console.log(childSnapshot.val());
 
         // Making variable for info
         var trainName = childSnapshot.val().Train;
@@ -59,25 +61,40 @@ $(document).ready(function(){
         var frequency = childSnapshot.val().Frequency;
 
         // Test
-        console.log(trainName);
-        console.log(destinationName);
-        console.log(firstTrain);
-        console.log(frequency);
+        // console.log(trainName);
+        // console.log(destinationName);
+        // console.log(firstTrain);
+        // console.log(frequency);
+
+        var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, 'years');
+        console.log(firstTrainConverted);
+
+        var currentTime = moment();
+        console.log('current time: ' + moment(currentTime).format('MMMM Do YYYY, hh:mm a'));
+
+        var diffTime = moment().diff(moment(firstTrainConverted), 'minutes');
+        console.log('difference in time: ' + diffTime);
+
+        var tRemaining = diffTime % frequency;
+        console.log(tRemaining);
+
+        var minutesTillNextTrain = frequency - tRemaining;
+        console.log('minutes till train: ' + minutesTillNextTrain);
+
+        var nextTrain = moment().add(minutesTillNextTrain, 'minutes');
+        console.log("arrival time: " + moment(nextTrain).format('MMMM Do YYYY, hh:mm a'));
 
         // Making New Rows
         var newRow = $("<tr>").append(
             $("<td>").text(trainName),
             $("<td>").text(destinationName),
             $("<td>").text(frequency),
-            $("<td>").text(""),
-            $("<td>").text(""),
+            $("<td>").text(nextTrain),
+            $("<td>").text(minutesTillNextTrain),
         );
 
         // Adding to Table
         $('#train-table').append(newRow);
-
-
-
     });
 
 
