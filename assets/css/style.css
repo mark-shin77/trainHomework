@@ -3,3 +3,8 @@
     text-align: center;
     padding: 60px;
 }
+
+th,
+td{
+    text-align: center;
+}
