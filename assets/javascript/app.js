@@ -66,23 +66,21 @@ $(document).ready(function(){
         // console.log(firstTrain);
         // console.log(frequency);
 
+        // Variables to find when Next Train is coming & How many minutes till 
         var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, 'years');
-        console.log(firstTrainConverted);
-
         var currentTime = moment();
-        console.log('current time: ' + moment(currentTime).format('MMMM Do YYYY, hh:mm a'));
-
         var diffTime = moment().diff(moment(firstTrainConverted), 'minutes');
-        console.log('difference in time: ' + diffTime);
-
         var tRemaining = diffTime % frequency;
-        console.log(tRemaining);
-
         var minutesTillNextTrain = frequency - tRemaining;
-        console.log('minutes till train: ' + minutesTillNextTrain);
-
         var nextTrain = moment().add(minutesTillNextTrain, 'minutes');
-        console.log("arrival time: " + moment(nextTrain).format('MMMM Do YYYY, hh:mm a'));
+        
+        // Test
+        // console.log(firstTrainConverted);
+        // console.log('current time: ' + moment(currentTime).format('MMMM Do YYYY, hh:mm a'));
+        // console.log('difference in time: ' + diffTime);
+        // console.log(tRemaining);
+        // console.log('minutes till train: ' + minutesTillNextTrain);
+        // console.log("arrival time: " + moment(nextTrain).format('MMMM Do YYYY, hh:mm a'));
 
         // Making New Rows
         var newRow = $("<tr>").append(
