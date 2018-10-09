@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
 
         // Pushing info to firebase
-        db.ref().push(newTrain);
+        db.ref('/trains').push(newTrain);
 
         // Test
         // console.log(newTrain.Train);
@@ -49,7 +49,7 @@ $(document).ready(function(){
     });
 
     // Generating Data From Firebase to HTML
-    db.ref().on('child_added', function(childSnapshot){
+    db.ref('/trains').on('child_added', function(childSnapshot){
 
         //Test
         // console.log(childSnapshot.val());

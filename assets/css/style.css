@@ -1,7 +1,10 @@
 .header{
-    color: white;
+    color: black;
     text-align: center;
-    padding: 60px;
+    padding: 70px;
+    background: url('../images/a-white-train.png'); 
+    background-repeat: round;
+    
 }
 
 th,
